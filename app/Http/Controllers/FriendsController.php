@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Friend;
 
 class FriendsController extends Controller
 {
     public function index() {
-        return view('friends.index');
+        $friends = Friend::orderBy('created_at','desc')->get();
+        return view('friends.index',['friends'=> $friends]);
     }
     public function create() {
         return view('friends.create');

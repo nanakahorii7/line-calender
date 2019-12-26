@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Friend;
 
-class DatabaseSeeder extends Seeder
+class FriendsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(FriendsTableSeeder::class);
+        factory(Friend::class, 10)
+        ->create();
     }
 }
