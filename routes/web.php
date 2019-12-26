@@ -14,4 +14,4 @@
 Route::get('/','FriendsController@index') -> name('top');
 
 Route::resource('friends','FriendsController',['only'=>['create','store']]);
-Route::post('/friends/search', 'FriendController@search')->name('friends.search');
+Route::post('/friends/search', 'FriendsController@search')->name('friends.search');

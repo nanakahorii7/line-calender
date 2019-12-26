@@ -20,7 +20,7 @@ class FriendsController extends Controller
     public function search(Request $request)
     {
         dd($request->search);
-        $posts = Friend::where('title',$request->search)->paginate(5);
+        $friends = Friend::where('title',$request->search)->paginate(5);
         
     }
 
