@@ -2,7 +2,8 @@
 
 @section('content')
     <main>
-        <form class = "p-5" style = "width:80%;" method="CREATE" action="{{ route('friends.store')}}">
+        <form class = "p-5" style = "width:80%;" method="POST" action="{{ route('friends.store')}}">
+            {{ csrf_field() }}
             <div class="form-group">
                 <label for="exampleFormControlInput1">Date</label>
                 <input type="date" class="form-control" id="exampleFormControlInput1">

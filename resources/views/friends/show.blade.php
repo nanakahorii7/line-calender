@@ -26,8 +26,8 @@
 	            >
 	                {{csrf_field()}}
 	                {{ method_field ('DELETE')}}
-	            </form>
 	            <button class="btn btn-dander">削除</button>
+	            </form>
 	            
 	        </div>
 	    </div>

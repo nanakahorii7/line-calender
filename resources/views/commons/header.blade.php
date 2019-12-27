@@ -10,7 +10,7 @@
                 <a class="nav-link text-right" href="#">Top <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item text-right">
-                <a class="nav-link" href="#">Search</a>
+                <a class="nav-link" href="{{ route('friends.create') }}">Search{{ route('friends.create') }}</a>
             </li>
             <li class="nav-item text-right">
                 <a class="nav-link" href="#">List</a>

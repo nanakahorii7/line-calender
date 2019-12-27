@@ -18,13 +18,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav text-right">
                 <li class="nav-item active">
-                    <a class="nav-link text-right" href="#">Top <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-right" href="#">Top<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item text-right">
-                    <a class="nav-link" href="{{ url('friends.index') }}">Search</a>
+                    <a class="nav-link" href="{{ route('friends.search') }}">Search</a>
                 </li>
                 <li class="nav-item text-right">
-                    <a class="nav-link" href="{{ url('friends.search') }}">List</a>
+                    <a class="nav-link" href="{{ route('friends.search') }}">List</a>
                 </li>
                 <!-- <li class="nav-item text-right">
                     <a class="nav-link disabled" href="#">Disabled</a>
