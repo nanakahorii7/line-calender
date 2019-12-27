@@ -12,6 +12,7 @@
 */
 
 Route::get('/','FriendsController@index') -> name('top');
+// Route::get('/search','FriendsController@search')-> name('search');
 
-Route::resource('friends','FriendsController',['only'=>['create','store']]);
+Route::resource('friends','FriendsController',['only'=>['create','store','show', 'edit', 'update','destroy']]);
 Route::post('/friends/search', 'FriendsController@search')->name('friends.search');

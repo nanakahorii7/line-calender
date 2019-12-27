@@ -15,7 +15,9 @@ class CreateFriendsTable extends Migration
     {
         Schema::create('friends',function(Blueprint $table){
             $table->increments('id');
+            $table->dateTime('created_at');
             $table->string('name',20);
+            $table->string('image');
             $table->text('memo');
             $table->timestamps();
         });

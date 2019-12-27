@@ -2,7 +2,7 @@
 
 @section('content')
     <main>
-        <form class = "p-5" style = "width:80%;">
+        <form class = "p-5" style = "width:80%;" method="CREATE" action="{{ route('friends.store')}}">
             <div class="form-group">
                 <label for="exampleFormControlInput1">Date</label>
                 <input type="date" class="form-control" id="exampleFormControlInput1">
@@ -34,7 +34,7 @@
             </div>
 
             <div class="text-right">
-                    <button type="submit" class="btn btn-primary text-right">Add</button>
+                <button type="submit" class="btn btn-primary text-right">Add</button>
             </div>
         </form>
     </main>

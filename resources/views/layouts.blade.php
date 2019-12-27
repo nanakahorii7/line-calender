@@ -21,10 +21,10 @@
                     <a class="nav-link text-right" href="#">Top <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item text-right">
-                    <a class="nav-link" href="#">Search</a>
+                    <a class="nav-link" href="{{ url('friends.index') }}">Search</a>
                 </li>
                 <li class="nav-item text-right">
-                    <a class="nav-link" href="#">List</a>
+                    <a class="nav-link" href="{{ url('friends.search') }}">List</a>
                 </li>
                 <!-- <li class="nav-item text-right">
                     <a class="nav-link disabled" href="#">Disabled</a>
