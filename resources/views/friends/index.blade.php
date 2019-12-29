@@ -98,7 +98,7 @@ document.write("</td>");	// 列(セル)の終わり
 document.write("</tr>");	// 行の終わり
 }	
 document.write("</table>");	// 表の終わり
-// --></script>
+// </script>
 
 	</div>
 @endsection('content')

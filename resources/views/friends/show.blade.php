@@ -1,4 +1,7 @@
-	    <div class="container mt-4">
+@extends('layouts')
+
+@section('content')
+    <div class="container mt-4">
 	    <div class="card mb-4">
 	        <div class="card-header mb-2">
 	           {{ $friend->name }}
@@ -28,7 +31,7 @@
 	                {{ method_field ('DELETE')}}
 	            <button class="btn btn-dander">削除</button>
 	            </form>
-	            
 	        </div>
 	    </div>
 	</div>
+@endsection('content')

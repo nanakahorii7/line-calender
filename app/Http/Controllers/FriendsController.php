@@ -19,7 +19,7 @@ class FriendsController extends Controller
     
     public function store(Request $request) {
         $params = $request->validate([
-            'date' => 'required',
+            'created_at' => 'required',
             'name' => 'required|max:20',
             ]);
             
@@ -49,7 +49,7 @@ class FriendsController extends Controller
 
     public function update($friend_id, Request $request) {
     $params = $request->validate([
-        'date' => 'required',
+        'created_at' => 'required',
         'name' => 'required|max:20',
         ]);
         

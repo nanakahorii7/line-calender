@@ -21,14 +21,14 @@
                     <a class="nav-link text-right" href="#">Top<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item text-right">
+                    <a class="nav-link" href="{{ route('friends.create') }}">New</a>
+                </li>
+                <li class="nav-item text-right">
                     <a class="nav-link" href="{{ route('friends.search') }}">Search</a>
                 </li>
                 <li class="nav-item text-right">
-                    <a class="nav-link" href="{{ route('friends.search') }}">List</a>
+                    <a class="nav-link" href="{{ route('friends.list') }}">List</a>
                 </li>
-                <!-- <li class="nav-item text-right">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li> -->
                 </ul>
             </div>
         </nav>
