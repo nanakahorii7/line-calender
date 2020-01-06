@@ -6,21 +6,21 @@
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="exampleFormControlInput1">Date</label>
-                <input type="date" class="form-control" id="exampleFormControlInput1">
+                <input type="date" class="form-control" id="exampleFormControlInput1" value="{{old('date')}}">
             </div>
 
             <div class="form-group">
                 <label for="exampleFormControlInput1">Name</label>
-                <input type="name" class="form-control" id="exampleFormControlInput1" placeholder="Taro Yamada">
+                <input type="name" class="form-control" id="exampleFormControlInput1" placeholder="Taro Yamada" value={{old('name')}}>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlFile1">Image</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" value={{old('image')>
             </div>
 
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Category</label>
-                <select class="form-control" id="exampleFormControlSelect1">
+                <select class="form-control" id="exampleFormControlSelect1" value={{old('category')>
                 <option>Work</option>
                 <option>School</option>
                 <option>Club</option>
@@ -31,7 +31,7 @@
 
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Memo</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" value={{old('memo')></textarea>
             </div>
 
             <div class="text-right">

@@ -19,7 +19,6 @@ class FriendsController extends Controller
     
     public function store(Request $request) {
         $params = $request->validate([
-            'created_at' => 'required',
             'name' => 'required|max:20',
             ]);
             
