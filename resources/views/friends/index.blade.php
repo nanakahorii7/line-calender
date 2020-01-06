@@ -2,9 +2,9 @@
 
 @section('content')
 
-<a href="{{ route('friends.create') }}">
-   新規投稿 
-</a>
+<!--<a href="{{ route('friends.create') }}">-->
+<!--   新規投稿 -->
+<!--</a>-->
     <div class="container">
 	<div class="row">
         <div class="col-md-6">

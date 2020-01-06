@@ -13,6 +13,6 @@
 
 Route::get('/','FriendsController@index') -> name('top');
 
-Route::resource('friends','FriendsController',['only'=>['create','store','show', 'edit', 'update','destroy']]);
 Route::get('/friends/search', 'FriendsController@search')->name('friends.search');
 Route::get('/friends/list', 'FriendsController@list')->name('friends.list');
+Route::resource('friends','FriendsController',['only'=>['create','store','show', 'edit', 'update','destroy']]);

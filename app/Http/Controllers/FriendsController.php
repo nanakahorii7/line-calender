@@ -27,15 +27,19 @@ class FriendsController extends Controller
         
         return redirect()->route('top');
     }
-    
-    
-    
+
     public function search(Request $request)
     {
+        return view('friends.search');
         dd($request->search);
         $friends = Friend::where('title',$request->search)->paginate(5);
-        
+
     }
+    
+    public function list() {
+    return view('friends.list');
+    }
+
 
     public function show($friend_id) {
         $friend = Friend::findOrFail($friend_id);
