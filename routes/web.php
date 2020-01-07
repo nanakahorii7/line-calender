@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/','FriendsController@index') -> name('top');
+Route::get('/','FriendsController@index')->name('top');
 
 Route::get('/friends/search', 'FriendsController@search')->name('friends.search');
 Route::get('/friends/list', 'FriendsController@list')->name('friends.list');

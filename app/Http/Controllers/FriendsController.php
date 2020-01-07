@@ -18,12 +18,15 @@ class FriendsController extends Controller
     }
     
     public function store(Request $request) {
-        $params = $request->validate([
+        $request->validate([
             'name' => 'required|max:20',
             ]);
             
-        Friend::create($params);
         
+        //dd($request->all());
+
+        Friend::create($request->all());
+
         return redirect()->route('top');
     }
 

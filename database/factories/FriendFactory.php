@@ -4,7 +4,10 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Friend::class, function (Faker $faker) {
     return [
-        'name' => 'Mark',
+        'date' ,
+        'name'=> 'Mark',
+        'image',
+        'category',
         'memo' => 'myfriend',
     ];
 });
