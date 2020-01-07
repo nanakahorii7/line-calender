@@ -2,7 +2,14 @@
 
 @section('content')
     <main>
-        <form class = "p-5" style = "width:80%;" method="POST" action="{{ route('friends.store')}}">
+        @if(count($errors) > 0)
+        <ul class="bg-danger">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        @endif
+        <form class = "p-5" style = "width:80%;" method="POST" action="{{ route('friends.store')}}" name="friend">
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="exampleFormControlInput1">Date</label>

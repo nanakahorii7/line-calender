@@ -22,26 +22,13 @@ class FriendsController extends Controller
             'name' => 'required|max:20',
             ]);
             
-        
+        //
         //dd($request->all());
 
         Friend::create($request->all());
 
-        return redirect()->route('top');
+        return redirect()->route('friends.show');
     }
-
-    public function search(Request $request)
-    {
-        return view('friends.search');
-        dd($request->search);
-        $friends = Friend::where('title',$request->search)->paginate(5);
-
-    }
-    
-    public function list() {
-    return view('friends.list');
-    }
-
 
     public function show($friend_id) {
         $friend = Friend::findOrFail($friend_id);
@@ -71,6 +58,21 @@ class FriendsController extends Controller
         $friend->delete();
     
         return redirect()->route('top');
+    }
+
+    public function search(Request $request)
+    {
+        return view('friends.search');
+        dd($request->search);
+        $friends = Friend::where('title',$request->search)->paginate(5);
+
+    }
+    
+    public function list() {
+        $friends = Friend::get();
+        
+       
+        return view('friends.list', compact('friends'));
     }
 
 }
