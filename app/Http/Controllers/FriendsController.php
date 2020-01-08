@@ -25,31 +25,33 @@ class FriendsController extends Controller
         //
         //dd($request->all());
 
-        Friend::create($request->all());
+        $friend = Friend::create($request->all());
 
-        return redirect()->route('friends.show');
+        //return redirect('friends/show');
+        return redirect()->route('friends.show',['id'=>$friend->id]);
     }
 
     public function show($friend_id) {
         $friend = Friend::findOrFail($friend_id);
-        return view('friends.show', ['friend' => $friend]);
+       
+                
+                
+        return view('friends.show', ['friend' => $friend,'categories'=>$this->categories()]);
     }
     
     public function edit($friend_id) {
     $friend = Friend::findOrFail($friend_id);
-    return view('friends.show', ['friend' => $friend]);
+    return view('friends.edit', ['friend' => $friend, 'categories'=>$this->categories()]);
     }
 
     public function update($friend_id, Request $request) {
-    $params = $request->validate([
-        'created_at' => 'required',
+    $request->validate([
+        //'created_at' => 'required',
         'name' => 'required|max:20',
         ]);
-        
         $friend = Friend::findOrFail($friend_id);
-        $friend->fill($params)->save();
-    
-        return redirect()->route('top');
+        $friend->fill($request->all())->save();
+        return redirect()->route('friends.show',['id'=>$friend->id]);
     }
     
     public function destroy($friend_id) {
@@ -73,6 +75,17 @@ class FriendsController extends Controller
         
        
         return view('friends.list', compact('friends'));
+    }
+    
+    
+    private function categories(){
+        return [
+            1=>'Work',
+            2=>'School',
+            3=>'Club',
+            4=>'Hobby',
+            5=>'Leisure',
+       ];
     }
 
 }

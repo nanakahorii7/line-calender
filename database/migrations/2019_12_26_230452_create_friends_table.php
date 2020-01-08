@@ -20,7 +20,7 @@ class CreateFriendsTable extends Migration
             $table->string('name',20);
             $table->string('image')->nullable();
             $table->integer('category');
-            $table->text('memo');
+            $table->text('memo')->nullable();;
             $table->timestamps();
         });
     }

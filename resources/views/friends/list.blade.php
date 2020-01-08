@@ -11,22 +11,24 @@
                 <th scope="col">Aicon</th>
                 <th scope="col">Category</th>
                 <th scope="col">Memo</th>
+                <th scope="col"></th>
+
               </tr>
             </thead>
+            @foreach($friends as $friend)
             <tbody>
-              @foreach($friends as $friend)
               <tr>
                 <th scope="row">1</th>
-                <td>Mark</td>
+                <td>{{ $friend->name }}</td>
                 <td><img src="image/face1.png" alt="" class="icon-face"></td>
-                <td>School</td>
-                <td>日本経済の授業であった</td>
+                <td>{{ $friend->category }}</td>
+                <td>{{ $friend->memo }}</td>
                 <td>
                 <a class="card-link" href="{{route('friends.show',['friend' => $friend])}}">詳細を見る</a>
                 </td>
               </tr>
-              @endforeach
             </tbody>
+            @endforeach
         </table>
     </main>
 

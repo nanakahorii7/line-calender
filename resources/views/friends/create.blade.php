@@ -28,7 +28,7 @@
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Category</label>
                 <select class="form-control" name="category" id="exampleFormControlSelect1">
-                <option value="1">Work</option>
+                <option value="1" >Work</option>
                 <option value="2">School</option>
                 <option value="3">Club</option>
                 <option value="4">Hobby</option>
@@ -38,7 +38,7 @@
 
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Memo</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="memo" value={{old('memo')></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="memo" value={{old('memo')}}></textarea>
             </div>
 
             <div class="text-right">
