@@ -2,38 +2,78 @@
 
 @section('content')
 	<main>
-        <form class = "p-5" style = "width:80%;">
+	    <div class="container py-5">
             <div>
                 <h1>詳細検索</h1>
             </div>
+            {!! Form::open(['route' => 'friends.search', 'method' => 'get']) !!}
             <div class="form-group">
-                <label for="exampleFormControlInput1">Date</label>
-                <input type="date" class="form-control" id="exampleFormControlInput1">
+                {!! Form::label('date', 'Date:') !!}
+                {!! Form::date('date', '{{ $friend->date }}', ['class'=>'form-control', 'placeholder'=>'指定なし']) !!}
             </div>
-
+    
             <div class="form-group">
-                <label for="exampleFormControlInput1">Name</label>
-                <input type="name" class="form-control" id="exampleFormControlInput1" placeholder="Taro Yamada">
+                {!! Form::label('name', 'Your name:') !!}
+                {!! Form::text('name', '', ['class'=>'form-control', 'placeholder'=>'Taro Yamada']) !!}
             </div>
             <div class="form-group">
-                <label for="exampleFormControlSelect1">Category</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                <option>Work</option>
-                <option>School</option>
-                <option>Club</option>
-                <option>Hobby</option>
-                <option>Leisure</option>
-                </select>
+                {!! Form::label('category', 'Category:') !!}
+                {!! Form::select('category', $category, ['class'=>'form-control', 'placeholder'=>'指定なし']) !!}
             </div>
-
+    
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">キーワード検索</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+                {!! Form::label('memo', 'キーワード検索:') !!}
+                {!! Form::textarea('memo', '',['class'=>'form-control']) !!}
             </div>
-
-            <div class="text-right">
-                    <button type="submit" class="btn btn-primary text-right">Search</button>
+    
+            <div>
+                 {!! Form::submit('Search', ['class' => 'btn btn-primary btn-block center-block']) !!}
             </div>
-        </form>
+            {!! Form::close() !!}
+        </div>
+        <div class="col-sm-8">
+            <div class="text-center my-4">
+                <h3 class="p-2">検索結果</h3>
+            </div>
+            <div class="container">
+            @if(!empty($data))
+                <div class="my-2 p-0">
+                    <div class="row border-bottom text-center">
+                        <div class="col-sm-4">
+                            <p>Date</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p>Name</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p>Image</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p>Category</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p>Memo</p>
+                        </div>
+                    </div>
+                </div>
+                @foreach($data as $friend)
+                    <div class="row py-2 border-botttom text-center">
+                        <div class="col-sm-4">
+                                {{ $friend->date }}
+                        </div>
+                        <div class="col-sm-4">
+                                {{ $friend->name }}
+                        </div>
+                        <div class="col-sm-4">
+                                {{ $friend->category }}
+                        </div>
+                        <div class="col-sm-4">
+                                {{ $friend->memo }}
+                        </div>                        
+                    </div>
+                @endforeach
+            </div>
+            {{ $data->appends(request()->input())->render('pagination::bootstrap-4') }}
+        @endif
 	</main>
 @endsection('content')

@@ -64,9 +64,34 @@ class FriendsController extends Controller
 
     public function search(Request $request)
     {
-        return view('friends.search');
-        dd($request->search);
-        $friends = Friend::where('title',$request->search)->paginate(5);
+       $query = Friend::query();
+
+       $search1 = $request->input('date');
+       $search2 = $request->input('name');
+       $search3 = $request->input('category');
+       $search4 = $request->input('memo');
+
+      if ($request->has('date') && $search1 != ('指定なし')) {
+          $query->where('date', $search1)->get();
+      }
+
+        if ($request->has('name') && $search2 != ('指定なし')) {
+          $query->where('name','like', '%'.$search2.'%')->get();
+      }
+        if ($request->has('category') && $search3 != ('指定なし')) {
+          $query->where('category', $search3)->get();
+      }
+        if ($request->has('memo') && $search4 != ('指定なし')) {
+          $query->where('memo', 'like', '%'.$search4.'%')->get();
+      }
+
+        $data = $query->paginate(10);
+        
+        
+        return view('friends.search', [
+            'data' => $data,
+            'categories' => $this->categories()
+            ]);
 
     }
     
