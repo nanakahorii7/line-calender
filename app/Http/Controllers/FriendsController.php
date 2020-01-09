@@ -63,7 +63,7 @@ class FriendsController extends Controller
             'memo'=>$request->memo
         ]);
 
-        return redirect()->route('friends.show',['id'=>$friend->id]);
+        return redirect()->route('friends.show',['id'=>$friend->id, 'image'=>$friend->image]);
     }
 
     public function show($friend_id) {
