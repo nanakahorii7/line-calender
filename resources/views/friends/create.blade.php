@@ -9,7 +9,7 @@
             @endforeach
         </ul>
         @endif
-        <form class = "p-5" style = "width:80%;" method="POST" action="{{ route('friends.store')}}" name="friend">
+        <form class = "p-5" style = "width:80%;" method="POST" action="{{ route('friends.store')}}" name="friend" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="exampleFormControlInput1">Date</label>
@@ -18,11 +18,11 @@
 
             <div class="form-group">
                 <label for="exampleFormControlInput1">Name</label>
-                <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Taro Yamada" value={{old('name')}}>
+                <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Taro Yamada" value="{{old('name')}}">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlFile1">Image</label>
-                <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1" value={{old('image')}}>
+                <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1" value="{{old('image')}}">
             </div>
 
             <div class="form-group">

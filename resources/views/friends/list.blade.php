@@ -2,7 +2,7 @@
 
 @section('content')
     <main style="width:80%; margin:0 auto;">
-        <h1 style="padding: 10px 0 20px 0;">December 7th</h1>
+        <h1 style="padding: 10px 0 20px 0;">My Friends</h1>
         <table class="table table-bordered">
             <thead>
               <tr>

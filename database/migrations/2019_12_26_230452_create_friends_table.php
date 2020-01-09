@@ -32,6 +32,8 @@ class CreateFriendsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('friends');
+        Schema::dropIfExists('friends',function(Blueprint $table){
+           $table->dropColumn('image'); 
+        });
     }
 }

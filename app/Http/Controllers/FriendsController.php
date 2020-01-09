@@ -14,34 +14,66 @@ class FriendsController extends Controller
     
     
     public function create() {
+        // $friend->image = $request->image->storeAs('public/img', $time.'_'.Auth::friend()->id . '.jpg');
         return view('friends.create');
+    }
+    
+    public function upload(Request $request)
+    {
+       
+
+       
     }
     
     public function store(Request $request) {
         $request->validate([
             'name' => 'required|max:20',
+            'image' => [
+                // 必須
+                'required',
+                // アップロードされたファイルであること
+                'file',
+                // 画像ファイルであること
+                'image',
+                // MIMEタイプを指定
+                'mimes:jpeg,png',
+                // 最小縦横120px 最大縦横400px
+                'dimensions:min_width=120,min_height=120,max_width=400,max_height=400',
+            ]
             ]);
             
-        //
-        //dd($request->all());
+            
+        $image = '';
+        if ($request->file('image')->isValid()) {
+           $filename = $request->file('image')->store('public/img');
 
-        $friend = Friend::create($request->all());
+           $image = basename($filename);
+        } else {
+             return redirect()
+                 ->back()
+                 ->withInput()
+                 ->withErrors(['file' => '画像がアップロードされていないか不正なデータです。']);
+        }
+        
+        $friend = Friend::create([
+            'date'=>$request->date,
+            'name'=>$request->name,
+            'image'=>$image,
+            'category'=>$request->category,
+            'memo'=>$request->memo
+        ]);
 
-        //return redirect('friends/show');
         return redirect()->route('friends.show',['id'=>$friend->id]);
     }
 
     public function show($friend_id) {
         $friend = Friend::findOrFail($friend_id);
-       
-                
-                
         return view('friends.show', ['friend' => $friend,'categories'=>$this->categories()]);
     }
     
     public function edit($friend_id) {
     $friend = Friend::findOrFail($friend_id);
-    return view('friends.edit', ['friend' => $friend, 'categories'=>$this->categories()]);
+    return view('friends.edit', ['friend' => $friend, 'categories'=>$this->categories() ,'image'=>$this->images()]);
     }
 
     public function update($friend_id, Request $request) {
@@ -64,28 +96,41 @@ class FriendsController extends Controller
 
     public function search(Request $request)
     {
-       $query = Friend::query();
+       
 
        $search1 = $request->input('date');
        $search2 = $request->input('name');
        $search3 = $request->input('category');
        $search4 = $request->input('memo');
+       
+       $data = null;
+       
+       if ($search1 || $search2 || $search3 || $search4){
+           $query = Friend::query();
+            $query->where(function($query) use ($search1, $search2, $search3, $search4 ){
+               //$query->where('date', $search1)
+               
+               if ($search1 && $search1 != ('指定なし')) {
+                   $query->where('date', $search1);
+               }
+               
+               if ($search2 && $search2 != ('指定なし')) {
+                   $query->orwhere('name', 'Like', "%{$search2}%");
+               }
+    
+               if ($search3 && $search3 != ('指定なし')) {
+                   $query->orwhere('category', $search3);
+               }
+               
+               if ($search4 && $search4 != ('指定なし')) {
+                   $query->orwhere('memo', 'Like', "%{$search4}%");
+               }
+               
+           });
+           
+            $data = $query->paginate(5);
+       }
 
-      if ($request->has('date') && $search1 != ('指定なし')) {
-          $query->where('date', $search1)->get();
-      }
-
-        if ($request->has('name') && $search2 != ('指定なし')) {
-          $query->where('name','like', '%'.$search2.'%')->get();
-      }
-        if ($request->has('category') && $search3 != ('指定なし')) {
-          $query->where('category', $search3)->get();
-      }
-        if ($request->has('memo') && $search4 != ('指定なし')) {
-          $query->where('memo', 'like', '%'.$search4.'%')->get();
-      }
-
-        $data = $query->paginate(10);
         
         
         return view('friends.search', [
@@ -104,13 +149,14 @@ class FriendsController extends Controller
     
     
     private function categories(){
-        return [
+        $categories = [
             1=>'Work',
             2=>'School',
             3=>'Club',
             4=>'Hobby',
             5=>'Leisure',
        ];
+       return $categories;
     }
-
+    
 }

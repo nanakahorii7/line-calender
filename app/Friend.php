@@ -13,4 +13,6 @@ class friend extends Model
         'category',
         'memo',
         ];
+        
+
 }
