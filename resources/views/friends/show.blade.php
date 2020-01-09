@@ -5,7 +5,7 @@
 <div class="container py-4 my-2">
     <div class="row">
         <div class="col-md-4 pr-md-5">
-           <img src="{{ asset("storage/img/{$friend->image}") }}" alt="image">
+           <img src="{{ asset("storage/img/{$friend->image}") }}" alt="image" width="300px">
         </div>
         <div class="col-md-8">
             <div class="d-flex align-items-center">
