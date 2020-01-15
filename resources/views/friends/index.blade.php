@@ -48,7 +48,7 @@
 	<!--   @endforeach-->
 	<!--</div>-->
 	<div id ='app'>
-		<v-calender :attributes='attrs' is-expanded></v-calender>
+		<v-calendar :attributes='attrs' is-expanded></v-calendar>
 	</div>
 	
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -77,4 +77,5 @@
 
 	</script>
 	</div>
+
 @endsection('content')
