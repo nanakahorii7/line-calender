@@ -20,8 +20,8 @@
               <tr>
                 <th scope="row">1</th>
                 <td>{{ $friend->name }}</td>
-                <td><img src="image/face1.png" alt="" class="icon-face"></td>
-                <td>{{ $friend->category }}</td>
+                <td><img src="{{ asset("storage/img/{$friend->image}") }}" alt="image" width="50px"></td>
+                <td>{{ $categories[$friend->category] }}</td>
                 <td>{{ $friend->memo }}</td>
                 <td>
                 <a class="card-link" href="{{route('friends.show',['friend' => $friend])}}">詳細を見る</a>

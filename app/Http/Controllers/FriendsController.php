@@ -14,16 +14,10 @@ class FriendsController extends Controller
     
     
     public function create() {
-        // $friend->image = $request->image->storeAs('public/img', $time.'_'.Auth::friend()->id . '.jpg');
+        // $friend->image = $request->image->storeAs('public/img', $time.'_'.Auth::friend()->id . '.jpeg');
         return view('friends.create');
     }
     
-    public function upload(Request $request)
-    {
-       
-
-       
-    }
     
     public function store(Request $request) {
         $request->validate([
@@ -38,7 +32,7 @@ class FriendsController extends Controller
                 // MIMEタイプを指定
                 'mimes:jpeg,png',
                 // 最小縦横120px 最大縦横400px
-                'dimensions:min_width=120,min_height=120,max_width=400,max_height=400',
+                // 'dimensions:min_width=120,min_height=120,max_width=400,max_height=400',
             ]
             ]);
             
@@ -80,10 +74,37 @@ class FriendsController extends Controller
     $request->validate([
         //'created_at' => 'required',
         'name' => 'required|max:20',
+        'image' => [
+                // アップロードされたファイルであること
+                'file',
+                // 画像ファイルであること
+                'image',
+                // MIMEタイプを指定
+                'mimes:jpeg,png,jpg',
+            ]
         ]);
         $friend = Friend::findOrFail($friend_id);
-        $friend->fill($request->all())->save();
-        return redirect()->route('friends.show',['id'=>$friend->id]);
+        $image = '';
+        if ($request->file('image')->isValid()) {
+           $filename = $request->file('image')->store('public/img');
+
+           $image = basename($filename);
+        } else {
+             return redirect()
+                 ->back()
+                 ->withInput()
+                 ->withErrors(['file' => '画像がアップロードされていないか不正なデータです。']);
+        }
+        
+        $friend = Friend::create([
+            'date'=>$request->date,
+            'name'=>$request->name,
+            'image'=>$image,
+            'category'=>$request->category,
+            'memo'=>$request->memo
+        ]);
+
+        return redirect()->route('friends.show',['id'=>$friend->id, 'image'=> $friend->image]);
     }
     
     public function destroy($friend_id) {
@@ -141,10 +162,11 @@ class FriendsController extends Controller
     }
     
     public function list() {
+        // $friends = Friend::get();
         $friends = Friend::get();
-        
+        return view('friends.list', ['friends' => $friends,'categories'=>$this->categories()]);
        
-        return view('friends.list', compact('friends'));
+        // return view('friends.list', compact('friends'));
     }
     
     
@@ -157,6 +179,18 @@ class FriendsController extends Controller
             5=>'Leisure',
        ];
        return $categories;
+    }
+    
+    private function images() {
+        $images= [
+            'image' => 'required|file|image|mimes:jpeg,png,jpg,gif'
+        ];
+    }
+    
+    private function memos() {
+        $memos= [
+            'memo' => 'max:255'
+            ];
     }
     
 }

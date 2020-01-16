@@ -1,6 +1,16 @@
 @extends('layouts')
 
 @section('content')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 
 <div class="container py-4 my-2">
     <div class="row">
@@ -16,6 +26,9 @@
             </div>
             <p class="h5 text-primary mt-2 d-block font-weight-light">
                 {{ $categories[$friend->category] }}
+            </p>
+            <p class="h4 mt-2 d-block font-weight-light">
+                {{ $friend->memo }}
             </p>
         </div>
         <div class="mt-4 text-right">

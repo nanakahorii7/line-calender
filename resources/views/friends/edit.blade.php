@@ -1,8 +1,17 @@
 @extends('layouts')
 
 @section('content')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <main>
-        <form class = "p-5 w-80" method="POST" action= "{{ route('friends.update' , ['friend' => $friend])}}">
+        <form class = "p-5 w-80" method="POST" action= "{{ route('friends.update' , ['friend' => $friend])}}" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             {{ method_field('PUT')}}
@@ -17,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlFile1">Image</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" value="{{$friend->image}}">
             </div>
 
             <div class="form-group">
